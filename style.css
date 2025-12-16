@@ -1,0 +1,16 @@
+@import "tailwindcss";
+.forecast-card {
+@apply min-w-[120px] bg-white/20 backdrop-blur-md rounded-xl p-4 text-center shadow-md;
+}
+
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+height: 6px;
+}
+
+
+::-webkit-scrollbar-thumb {
+background: rgba(162, 66, 130, 0.4);
+border-radius: 10px;
+}
