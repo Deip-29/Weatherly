@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="src/output.css" />
+</head>
+<body class="low-h-screen bg-[url('https://images.unsplash.com/photo-1501630834273-4b5604d2ee31')] bg-cover bg-center text-black-400">
+  <!-- <img src="Public/sky.jpg" alt="back img"> -->
+  <main class="High-w-6xl mx-auto px-6 py-8">
+
+    <!-- Header -->
+   <header class="mb-10">
+  <h1 class="text-base tracking-[0.3em] opacity-80 font-medium">
+    WEATHER APP
+  </h1>
+</header>
+
+
+
+    <!-- Search -->
+    <section class="flex justify-center mb-10">
+     <input
+  type="text"
+  placeholder="Search city"
+  class="w-4xl High-w-xl px-6 py-3 rounded-full bg-gray-300 text-gray-900 placeholder-gray-400 shadow-md focus:outline-none focus:ring-2  focus:ring-blue-400"
+/>
+    </section>
+
+    <!-- Location Info -->
+    <section class="mb-10">
+      <h2 class="text-4xl font-semibold">New York, US</h2>
+      <p class="opacity-90">Wednesday, 1 April</p>
+    </section>
+
+    <!-- Current Weather -->
+    <section class="grid md:grid-cols-2 gap-8 mb-12">
+
+      <!-- Temperature -->
+      <div class="flex items-center gap-6">
+        <div class="text-7xl">☁️</div>
+        <div>
+          <p class="text-7xl font-bold">5°</p>
+          <p class="opacity-90">Overcast clouds</p>
+        </div>
+      </div>
+
+      <!-- Details Card -->
+      <div class="bg-white/20 backdrop-blur-md rounded-2xl p-6 grid grid-cols-3 gap-4 text-center">
+        <div>
+          <p class="text-sm opacity-80">High</p>
+          <p class="text-xl font-semibold">6°</p>
+        </div>
+        <div>
+          <p class="text-sm opacity-80">Wind</p>
+          <p class="text-xl font-semibold">3.1 mph</p>
+        </div>
+        <div>
+          <p class="text-sm opacity-80">Sunrise</p>
+          <p class="text-xl font-semibold">6:40</p>
+        </div>
+        <div>
+          <p class="text-sm opacity-80">Low</p>
+          <p class="text-xl font-semibold">3°</p>
+        </div>
+        <div>
+          <p class="text-sm opacity-80">Rain</p>
+          <p class="text-xl font-semibold">70%</p>
+        </div>
+        <div>
+          <p class="text-sm opacity-80">Sunset</p>
+          <p class="text-xl font-semibold">7:19</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Forecast -->
+    <section>
+      <h3 class="text-xl mb-4">Forecast</h3>
+      <div class="flex gap-4 mr-8 overflow-x-auto pb-4">
+
+        <!-- Forecast Card -->
+        <div class="forecast-card">
+        
+          <p class="text-xl"> Tomorrow 22 Dec </p>
+          <p class="text-xs">9/12</p>
+         
+          <div class="text-2xl">☁️</div>
+          <p>4°</p>
+        </div>
+
+        <!-- Duplicate as needed -->
+        <div class="forecast-card">
+           <p class="text-xl">23 Dec </p>
+         <p class="text-xs">9/12</p>
+          <div class="text-2xl">☁️</div>
+          <p>3°</p>
+        </div>
+
+        <div class="forecast-card">
+         <p class="text-xl">24 Dec </p>
+        <p class="text-xs">9/12</p>
+          <div class="text-2xl">☁️</div>
+          <p>2°</p>
+        </div>
+
+        
+        <div class="forecast-card">
+          <p class="text-xl">25 Dec </p>
+          <p class="text-xs">9/12</p>
+          <div class="text-2xl">☁️</div>
+          <p>2°</p>
+        </div>
+
+        
+        <div class="forecast-card">
+          <p class="text-xl">26 Dec </p>
+          <p class="text-xs">9/12</p>
+          <div class="text-2xl">☁️</div>
+          <p>2°</p>
+        </div>
+
+        
+        <div class="forecast-card">
+          <p class="text-xl">27 Dec </p>
+          <p class="text-xs">9/12</p>
+          <div class="text-2xl">☁️</div>
+          <p>2°</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
