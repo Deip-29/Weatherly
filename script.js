@@ -9,6 +9,32 @@ const cityInput = document.getElementById("Scity");
 const suggestionBox = document.getElementById("citySuggestions");
 // listners
 
+suggestionBox.addEventListener("click", (e) => {
+  if (e.target.tagName === "LI") {
+    const city = e.target.textContent.trim();
+    cityInput.value = city;
+    suggestionBox.classList.add("hidden");
+    getWeatherByCity(city);
+  }
+});
+
+
+
+  document.getElementById("unitToggle").addEventListener("click", () => {   // toggle logic
+  if (currentTempC === null) return;
+
+  if (isCelsius) {
+    const f = (currentTempC * 9) / 5 + 32;
+    document.querySelector(".temp").textContent = `${Math.round(f)}°F`;
+    document.getElementById("unitToggle").textContent = "°C";
+  } else {
+    document.querySelector(".temp").textContent = `${Math.round(currentTempC)}°C`;
+    document.getElementById("unitToggle").textContent = "°F";
+  }
+
+  isCelsius = !isCelsius;
+});
+
 document.querySelector(".date").textContent =
   new Date().toLocaleDateString("en-GB", {
     weekday: "long",
@@ -47,7 +73,33 @@ cityInput.addEventListener("input", (e) => {
 });
 window.addEventListener("load", populateCityDropdown);    // putting event listener on change 
 //Function
+function showSuggestions(filter = "") {                            // logic to show suggestions
+  const list = document.getElementById("citySuggestions");
+  const cities = JSON.parse(sessionStorage.getItem("cities")) || [];
 
+  const filtered = cities.filter(city =>
+    city.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  if (!filtered.length) {
+    list.classList.add("hidden");
+    return;
+  }
+
+  list.innerHTML = filtered
+    .map(
+      city => `
+      <li
+        class="px-4 py-2 cursor-pointer hover:bg-gray-100"
+      >
+        ${city}
+      </li>
+    `
+    )
+    .join("");
+
+  list.classList.remove("hidden");
+}
 function getWeatherByCurrentLocation() {                     /// to get current location wheather insightes
   if (!navigator.geolocation) {
     showError("Geolocation is not supported by your browser");
@@ -126,7 +178,25 @@ function displayFiveDayForecast(forecastList) {                              //c
     forecastContainer.innerHTML += card;
   });
 }
+async function getWeatherByCoords(lat, lon) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+    );
 
+    if (!response.ok) throw new Error("Location weather failed");
+
+    const data = await response.json();
+
+    updateUI(data);
+
+    //Reuse same coords
+    get5DayForecast(lat, lon);
+
+  } catch (error) {
+    showError(error.message);
+  }
+}
 function setWeatherIcon(iconCode) {
   document.getElementById("weatherIcon").src = 
     `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
