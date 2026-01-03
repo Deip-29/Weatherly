@@ -1,11 +1,10 @@
-
-
+// elements from html
+const searchBtn = document.querySelector("#searchBtn");
 const apiKey="c60b6fb3cb7dd48a8722bdf3fcb16018";
-let city="rewari"
-const api=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
-console.log(api);
 
-fetch(api).then((res)=>res.json())
-        .then((data)=>{
-          console.log(data.main.temp)
-        })
+let currentTempC = null;
+let isCelsius = true;
+
+const cityInput = document.getElementById("Scity");
+const suggestionBox = document.getElementById("citySuggestions");
+

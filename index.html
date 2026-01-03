@@ -24,19 +24,38 @@
 
 
 
-    <!-- Search -->
-    <section class="flex justify-center mb-10">
-     <input
-  type="text"
-  placeholder="Search city"
-  class="w-4xl High-w-xl px-6 py-3 rounded-full bg-gray-300 text-gray-900 placeholder-gray-400 shadow-md focus:outline-none focus:ring-2  focus:ring-blue-400"
-/>
-    </section>
+   <section class="flex justify-center mb-10">
+  <div class="flex w-full max-w-xl">
+    
+    <div class="relative w-full max-w-xl mx-auto">
+  <input
+    type="text"
+    id="Scity"
+    placeholder="Search city"
+    class="w-full px-6 py-3  bg-gray-300 text-gray-900 placeholder-gray-400 shadow-md focus:outline-none focus:ring-2 focus:ring-pink-300"
+  />
+
+  <ul
+    id="citySuggestions"
+    class="absolute left-0 right-0 mt-1 bg-white rounded-xl shadow-lg hidden z-50 overflow-hidden"
+  ></ul>
+</div>
+
+    <button
+      id="searchBtn"
+      class="px-6 py-3 rounded-r-full  bg-gray-300 text-white font-medium shadow-md hover:bg-fuchsia-100 hover:text-black transition"
+    >
+      Search
+    </button>
+
+  </div>
+</section>
 
     <!-- Location Info -->
     <section class="mb-10">
-      <h2 class="text-4xl font-semibold">New York, US</h2>
-      <p class="opacity-90">Wednesday, 1 April</p>
+      <h2  class="text-4xl font-semibold city">New York,US</h2>
+      <!-- <p class="opacity-90">Wednesday, 1 April</p> -->
+      <p class="date text-sm opacity-80"></p>
     </section>
 
     <!-- Current Weather -->
@@ -44,38 +63,48 @@
 
       <!-- Temperature -->
       <div class="flex items-center gap-6">
-        <div class="text-7xl">☁️</div>
-        <div>
-          <p class="text-7xl font-bold">5°</p>
-          <p class="opacity-90">Overcast clouds</p>
-        </div>
+       
+        
+          <img src="" id="weatherIcon" class="text-7xl" alt="icon">
+          <div>
+          <p class=" temp text-7xl font-bold">5°</p>
+          <div id="weatherAlert" class="hidden"></div>
+          <button
+  id="unitToggle"
+  class="mt-2 px-4 py-1 text-sm rounded-full bg-white/30 backdrop-blur-md hover:bg-white/50 transition"
+>
+  °F
+</button>
+          <p class=" condition opacity-90">Overcast clouds</p>
+        </div> 
+        <p id="errorBox" class="hidden px-4 py-1 text-sm rounded-full text-red-700 border-0 bg-white/30 backdrop-blur-md hover:bg-white/50 mt-3 text-center"></p>
       </div>
-
+       
       <!-- Details Card -->
       <div class="bg-white/20 backdrop-blur-md rounded-2xl p-6 grid grid-cols-3 gap-4 text-center">
         <div>
           <p class="text-sm opacity-80">High</p>
-          <p class="text-xl font-semibold">6°</p>
+          <p class=" high text-xl font-semibold">6°</p>
         </div>
         <div>
           <p class="text-sm opacity-80">Wind</p>
-          <p class="text-xl font-semibold">3.1 mph</p>
+          <p class=" wind text-xl font-semibold">3.1 mph</p>
         </div>
         <div>
           <p class="text-sm opacity-80">Sunrise</p>
-          <p class="text-xl font-semibold">6:40</p>
+          <p class=" sunrise text-xl font-semibold">6:40</p>
         </div>
         <div>
-          <p class="text-sm opacity-80">Low</p>
-          <p class="text-xl font-semibold">3°</p>
+          <p class="text-sm opacity-80">Visibility</p>
+          <p class=" visibility text-xl font-semibold"></p>
         </div>
         <div>
-          <p class="text-sm opacity-80">Rain</p>
-          <p class="text-xl font-semibold">70%</p>
+          <p class="text-sm opacity-80">Humidity</p>
+          <p class=" humidity text-xl font-semibold">70%</p>
         </div>
         <div>
           <p class="text-sm opacity-80">Sunset</p>
-          <p class="text-xl font-semibold">7:19</p>
+          <p class="sunset text-xl font-semibold"></p>
         </div>
       </div>
 
@@ -83,60 +112,28 @@
 
     <!-- Forecast -->
     <section>
-      <h3 class="text-xl mb-4">Forecast</h3>
-      <div class="flex gap-4 mr-8 overflow-x-auto pb-4">
+    
+      
 
         <!-- Forecast Card -->
-        <div class="forecast-card">
-        
-          <p class="text-xl"> Tomorrow 22 Dec </p>
-          <p class="text-xs">9/12</p>
-         
-          <div class="text-2xl">☁️</div>
-          <p>4°</p>
-        </div>
+       <section class="max-w-5xl mx-auto mt-12">
+  <h2 class="text-xl mb-4 font-semibold text-center ">5-Day Forecast</h2>
 
-        <!-- Duplicate as needed -->
-        <div class="forecast-card">
-           <p class="text-xl">23 Dec </p>
-         <p class="text-xs">9/12</p>
-          <div class="text-2xl">☁️</div>
-          <p>3°</p>
-        </div>
+  <div
+    id="forecast"
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4"
+  ></div>
+</section>
 
-        <div class="forecast-card">
-         <p class="text-xl">24 Dec </p>
-        <p class="text-xs">9/12</p>
-          <div class="text-2xl">☁️</div>
-          <p>2°</p>
-        </div>
+    
 
-        
-        <div class="forecast-card">
-          <p class="text-xl">25 Dec </p>
-          <p class="text-xs">9/12</p>
-          <div class="text-2xl">☁️</div>
-          <p>2°</p>
-        </div>
 
-        
-        <div class="forecast-card">
-          <p class="text-xl">26 Dec </p>
-          <p class="text-xs">9/12</p>
-          <div class="text-2xl">☁️</div>
-          <p>2°</p>
-        </div>
-
-        
-        <div class="forecast-card">
-          <p class="text-xl">27 Dec </p>
-          <p class="text-xs">9/12</p>
-          <div class="text-2xl">☁️</div>
-          <p>2°</p>
-        </div>
-
-      </div>
-    </section>
+</section>
+<div
+  id="weather-bg"
+  class="fixed inset-0 -z-10 bg-cover bg-center transition-all duration-700"
+></div>
+<!-- to set dynamic background -->
 
   </main>
 
