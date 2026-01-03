@@ -82,3 +82,9 @@ function setWeatherIcon(iconCode) {
   document.getElementById("weatherIcon").src = 
     `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 }
+// function to show error 
+function showError(message) {
+  const errorBox = document.getElementById("errorBox");
+  errorBox.textContent = message;
+  errorBox.classList.remove("hidden");
+}
