@@ -8,6 +8,13 @@ let isCelsius = true;
 const cityInput = document.getElementById("Scity");
 const suggestionBox = document.getElementById("citySuggestions");
 // listners
+
+document.querySelector(".date").textContent =
+  new Date().toLocaleDateString("en-GB", {
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+  });
 searchBtn.addEventListener("click", () => {
   const city = cityInput.value.trim();
   console.log(city); // ALWAYS check first
@@ -38,7 +45,27 @@ document.addEventListener("click", (e) => {
 cityInput.addEventListener("input", (e) => {
   showSuggestions(e.target.value);
 });
+window.addEventListener("load", populateCityDropdown);    // putting event listener on change 
 //Function
+
+function getWeatherByCurrentLocation() {                     /// to get current location wheather insightes
+  if (!navigator.geolocation) {
+    showError("Geolocation is not supported by your browser");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      getWeatherByCoords(lat, lon);
+    },
+    () => {
+      showError("Location access denied");
+    }
+  );
+}
 function saveCity(city) {
   let cities = JSON.parse(sessionStorage.getItem("cities")) || [];
 
