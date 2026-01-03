@@ -278,3 +278,46 @@ function showTemperatureAlert(tempC) {          // to set weather alert
     alertBox.classList.add("hidden");
   }
 } 
+
+
+function updateUI(data) {
+
+  currentTempC = data.main.temp;
+showTemperatureAlert(currentTempC);
+document.querySelector(".temp").textContent =
+  `${Math.round(currentTempC)}°C`;
+
+  document.querySelector(".city").textContent =           
+    `${data.name}, ${data.sys.country}`;
+
+    document.querySelector(".high").textContent =
+    `${Math.round(data.main.temp_max)}°C`;
+    
+
+    const visibilityKm = (data.visibility / 1000).toFixed(1);
+    document.querySelector(".visibility").textContent =
+    `${visibilityKm} km`;
+   
+
+    document.querySelector(".humidity").textContent =
+    `${data.main.humidity}%`;
+
+     document.querySelector(".wind").textContent =
+    `${Math.round(data.wind.speed)}m/s`;
+   const srt= new Date(data.sys.sunrise * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+document.querySelector(".sunrise").textContent =
+    `${srt}`;
+  
+    const sst= new Date((data.sys.sunset) * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+    document.querySelector(".sunset").textContent =
+      `${sst}`;
+  document.querySelector(".temp").textContent =
+    `${Math.round(data.main.temp)}°`;
+
+  document.querySelector(".condition").textContent =
+    data.weather[0].description;
+
+  setWeatherIcon(data.weather[0].icon);
+  setDynamicBackground(data.weather[0].main);
+
+}
