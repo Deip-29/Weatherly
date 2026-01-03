@@ -77,3 +77,8 @@ function displayFiveDayForecast(forecastList) {                              //c
     forecastContainer.innerHTML += card;
   });
 }
+
+function setWeatherIcon(iconCode) {
+  document.getElementById("weatherIcon").src = 
+    `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+}
