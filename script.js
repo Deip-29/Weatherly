@@ -38,7 +38,17 @@ document.addEventListener("click", (e) => {
 cityInput.addEventListener("input", (e) => {
   showSuggestions(e.target.value);
 });
+//Function
+function saveCity(city) {
+  let cities = JSON.parse(sessionStorage.getItem("cities")) || [];
 
+  cities = cities.filter(c => c.toLowerCase() !== city.toLowerCase());
+  cities.unshift(city);
+
+  if (cities.length > 5) cities.pop();
+
+  sessionStorage.setItem("cities", JSON.stringify(cities));
+}
 async function getWeatherByCity(city) {
   try {
     const response = await fetch(
