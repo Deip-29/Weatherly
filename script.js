@@ -7,7 +7,22 @@ let isCelsius = true;
 
 const cityInput = document.getElementById("Scity");
 const suggestionBox = document.getElementById("citySuggestions");
+const weatherBackgrounds = {
+  clear: "https://images.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg",
+
+  clouds: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXByeWd2NXVuZGd6M3oxeDZ3ZW9lZnF1dHdsbjF3cXJ0cGZnOXQzYiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ImmmGydHd0cGuKMauw/giphy.webp",
+
+  rain: "https://media1.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dHJwNGNraXNkdzV3cWpuOW54ZGM5dnRrMmJjZmJtMG1wM3Zqamo4eiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GYRbm1riP47nWtLeo7/giphy.webp",
+
+  thunderstorm: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTVlamQ0ODh1a3ljaHY5MjgyYzRrYXI5bzE0eXBoNXg1cWVwbGpsayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/JDPsfIOg1uL6M/giphy.webp",
+
+  snow: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExanAwcHRwOXFsd2JrNDhseHU5cG4xZzRyeGtqazFleHd1cmo2eHQ3bSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/BDucPOizdZ5AI/giphy.webp",
+
+  mist: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXg0bGdsbTZ5bjMzazFsNnhkY2J4cDM1YjV0dWhydm03cGlnZzF6OCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/yhZr5Wx7CBFbq/200.webp"
+};
+
 // listners
+
 
 suggestionBox.addEventListener("click", (e) => {
   if (e.target.tagName === "LI") {
@@ -226,4 +241,21 @@ async function get5DayForecast(lat, lon) {
   } catch (error) {
     showError(error.message);
   }
+}
+
+
+function setDynamicBackground(weatherMain) {     // to set bg 
+  const bg = document.getElementById("weather-bg");
+
+  let key = weatherMain.toLowerCase();
+
+  if (key.includes("cloud")) key = "clouds";
+  if (key.includes("rain") || key.includes("drizzle")) key = "rain";
+  if (key.includes("thunder")) key = "thunderstorm";
+  if (key.includes("snow")) key = "snow";
+  if (key.includes("mist") || key.includes("fog") || key.includes("haze")) key = "mist";
+  if (key.includes("clear")) key = "clear";
+
+  bg.style.backgroundImage =
+    `url('${weatherBackgrounds[key] || weatherBackgrounds.clouds}')`;
 }
