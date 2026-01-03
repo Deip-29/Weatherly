@@ -259,3 +259,22 @@ function setDynamicBackground(weatherMain) {     // to set bg
   bg.style.backgroundImage =
     `url('${weatherBackgrounds[key] || weatherBackgrounds.clouds}')`;
 }
+
+
+function showTemperatureAlert(tempC) {          // to set weather alert
+  const alertBox = document.getElementById("weatherAlert");
+
+  alertBox.classList.remove("hidden", "alert-hot", "alert-cold");
+
+  if (tempC >= 40) {
+    alertBox.textContent = "🔥 Extreme Heat Alert: Too Hot";
+    alertBox.classList.add("alert-hot");
+  } 
+  else if (tempC <= 5) {
+    alertBox.textContent = "🥶 Cold Weather Alert: Too Cold";
+    alertBox.classList.add("alert-cold");
+  } 
+  else {
+    alertBox.classList.add("hidden");
+  }
+} 
