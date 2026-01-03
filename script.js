@@ -7,7 +7,7 @@ let isCelsius = true;
 
 const cityInput = document.getElementById("Scity");
 const suggestionBox = document.getElementById("citySuggestions");
-
+// listners
 searchBtn.addEventListener("click", () => {
   const city = cityInput.value.trim();
   console.log(city); // ALWAYS check first
@@ -26,6 +26,18 @@ window.addEventListener("load", () => {
   getWeatherByCurrentLocation();
 });
 
+cityInput.addEventListener("focus", () => {
+  showSuggestions();
+});
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest("#Scity")) {
+    suggestionBox.classList.add("hidden");
+  }
+});
+cityInput.addEventListener("input", (e) => {
+  showSuggestions(e.target.value);
+});
 
 async function getWeatherByCity(city) {
   try {
@@ -87,4 +99,24 @@ function showError(message) {
   const errorBox = document.getElementById("errorBox");
   errorBox.textContent = message;
   errorBox.classList.remove("hidden");
+}
+
+
+
+async function get5DayForecast(lat, lon) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+    );
+
+    if (!response.ok) throw new Error("Forecast not available");
+
+    const data = await response.json();
+
+   
+    displayFiveDayForecast(data.list);
+
+  } catch (error) {
+    showError(error.message);
+  }
 }
